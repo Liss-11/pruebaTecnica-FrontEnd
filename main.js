@@ -1,4 +1,3 @@
-
 /* Progress-bars */
 
 var progress_perros = document.querySelector('#progress_perros');
@@ -15,22 +14,46 @@ var votos_conejos = document.querySelector('#votos_conejos');
 
 window.onload = function() { 
 		
-    progress_perros.style.width = '20%';
-    getVotes();
-    
+    setInterval(getVotes, 3000);
 } 
 
-/* https://demos.geprom.com/datos.php */
-
 function getVotes(){
-    fetch('https://demos.geprom.com/datos.php')
-      .then(response => response.json())
-      .then(json => console.log(json));
+
+     /* No puedo hacer la llamada por los CORS - se debe habilitar el Cross-Origin en el back-end, he usado un backEnd propido*/
+     /* My dummy BackEnd - foto adjuntadas*/
+
+        //fetch('http://127.0.0.1:8080/api/geprom')
+
+  fetch('https://demos.geprom.com/datos.php')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    calculatePercentage(data);
+    printVotes(data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
 
+function calculatePercentage(data){
 
+    var total = data["respuesta1"] + data["respuesta2"] + data["respuesta3"] + data["respuesta4"];
+    progress_perros.style.width = (data["respuesta1"] * (100/total)) + "%";
+    progress_gatos.style.width = (data["respuesta2"] * (100/total)) + "%";
+    progress_hamsters.style.width = (data["respuesta3"] * (100/total)) + "%";
+    progress_conejos.style.width = (data["respuesta4"] * (100/total)) + "%";
 
-//llamada a una pagina externa
-//leo el resuldado y lo guardo en data;
-//apartir de data, asigno valores a las variables guardadas;
-//vario tambein los contadores debajo de los emojis
+}
+
+function printVotes(data){
+    votos_perros.textContent = data["respuesta1"] + " votos";
+    votos_gatos.textContent = data["respuesta2"] + " votos";
+    votos_hamsters.textContent = data["respuesta3"] + " votos";
+    votos_conejos.textContent = data["respuesta4"] + " votos";
+}

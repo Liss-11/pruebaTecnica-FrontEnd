@@ -23,16 +23,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* border: 2px solid black; */
 }
 
 .title{
-    /* border: 2px solid red; */
     max-height: 10%;
-    font-size: 2vw;
-    /* font-weight: 600; */
-    text-align: center;
-    
+    font-size: 2.5vw;
+    text-align: center;  
 }
 
 .content{
@@ -48,7 +44,6 @@
 
 .row{
     height: 25%;
-    /* border: 2px solid blue; */
     display: flex;
     justify-content: space-between;
 }
@@ -65,14 +60,16 @@
     max-width: 10%;
     display:flex;
     flex-direction: column;
+    align-self: center;
     align-items: center;
-    font-size: 4vw;
+    font-size: 3vw;
 }
 
 .votos{
     font-size: 1vw;
     color: black;
     font-family:'Times New Roman', Times, serif;
+    font-weight: 200;
 }
 
 .progress {
@@ -86,22 +83,40 @@
 .progress-bar {
     height: 100%;
     width: 0%;
-    transition: width 0.25s;
+    transition: width 1.00s;
     border-radius: 2em;
+    
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 .perros{
-    background: linear-gradient( 50deg, #faf392, #f46d52);
+    background: linear-gradient( 90deg, #f6f1b7, #f48d52);
 }
 
 .gatos{
-    background: linear-gradient( 50deg, #95f5ef, #2e92c8);
+    background: linear-gradient( 90deg, #98fff8, #1c78a9);
 }
 
 .hamsters{
-    background: linear-gradient( 50deg, #eebffa, #9a56f3);
+    background: linear-gradient( 90deg, #febcf5, #9344fa);
 }
 
 .conejos{
-    background: linear-gradient( 50deg, #fcb8ee, #f860b3);
+    background: linear-gradient( 90deg, #f8d182, #f65656);
+}
+
+.image {
+    display: block;
+    position: relative;
+    font-size: 13vh;
+    max-width: fit-content;
+    right: -3vw;
+    animation: swinging ease-in-out 0.2s infinite alternate;
+  }
+  
+  @keyframes swinging {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
 }
